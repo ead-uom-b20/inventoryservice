@@ -46,6 +46,21 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
+    public Long findItemByIdQua(Long id) {
+        try{
+            Optional<InventoryDomain> items = inventoryRepository.findById(id);
+            InventoryDomain inventoryDomain = null;
+            if(items.isPresent()){
+                inventoryDomain = items.get();
+            }
+            return  inventoryDomain.getQuantity();
+        } catch (Exception e){
+            return null;
+        }
+
+    }
+
+    @Override
     public ResponseDto addItem(InventoryDomain inventoryDomain) {
         ResponseDto responseDto = null;
         try{

@@ -22,6 +22,11 @@ public class InventoryController {
         return inventoryService.findItemById(id);
     }
 
+    @GetMapping("/inventory/quantity/{id}")
+    public Long findItemByIdQua(@PathVariable Long id){
+        return inventoryService.findItemByIdQua(id);
+    }
+
     @PostMapping("/inventory")
     public ResponseDto addItem(@RequestBody InventoryDomain inventoryDomain){
         return inventoryService.addItem(inventoryDomain);
