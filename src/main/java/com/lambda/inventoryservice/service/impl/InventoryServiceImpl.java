@@ -79,10 +79,18 @@ public class InventoryServiceImpl implements InventoryService {
             Optional<InventoryDomain> optionalInventory = inventoryRepository.findById(id);
             if(optionalInventory.isPresent()){
                 InventoryDomain queriedInventory = optionalInventory.get();
-                queriedInventory.setProductName(inventoryDomain.getProductName());
-                queriedInventory.setQuantity(inventoryDomain.getQuantity());
-                queriedInventory.setStatus(inventoryDomain.getStatus());
-                queriedInventory.setUnitPrice(inventoryDomain.getUnitPrice());
+                if(inventoryDomain.getProductName()!= null){
+                    queriedInventory.setProductName(inventoryDomain.getProductName());
+                }
+                if(inventoryDomain.getQuantity()!= null){
+                    queriedInventory.setQuantity(inventoryDomain.getQuantity());
+                }
+                if(inventoryDomain.getStatus()!=null){
+                    queriedInventory.setStatus(inventoryDomain.getStatus());
+                }
+                if(inventoryDomain.getUnitPrice()!=null){
+                    queriedInventory.setUnitPrice(inventoryDomain.getUnitPrice());
+                }
                 InventoryDomain savedData = inventoryRepository.save(queriedInventory);
                 responseDto = serviceUtil.getServiceResponse(savedData);
             }else{
